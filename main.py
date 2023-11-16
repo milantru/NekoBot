@@ -92,9 +92,7 @@ async def on_message(message):
 
 
 keep_alive()
-token = os.getenv("TOKEN") or ""
-client.run(token)
-"""
+
 try:
   token = os.getenv("TOKEN") or ""
   if token == "":
@@ -110,4 +108,3 @@ except discord.HTTPException as e:
         )
     else:
         raise e
-"""

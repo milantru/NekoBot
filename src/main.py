@@ -21,7 +21,7 @@ def update_manga_list(manga_name):
     mangas.append(manga_name)
     db["mangas"] = mangas
   else:
-    db["mangas"] = [manga_name]
+    db["mangas"] = [ manga_name ]
 
 
 def get_mangas():
@@ -39,6 +39,17 @@ def delete_from_manga_list(index):
     db["mangas"] = mangas
 
 
+def get_random_anime_quote():
+  try:
+    res = requests.get('https://animechan.xyz/api/random')
+    response = json.loads(res.text)
+    quote = f'"{response["quote"]}"\n-{response["character"]} from {response["anime"]}'
+  except Exception:
+    quote = None
+
+  return quote
+
+
 @client.event
 async def on_ready():
   print('I, {0.user}, am HERE!'.format(client))
@@ -52,43 +63,42 @@ async def on_message(message):
   msg = message.content
   channel = message.channel
 
-  if msg.startswith('$hello'):
-    await channel.send('Hello!')
+  if msg.startswith('!pozdrav'):
+    await channel.send('Ahoj!')
 
-  if msg.startswith('$quote'):
-    try:
-      res = requests.get('https://animechan.xyz/api/random')
-    except Exception:
-      await channel.send("Oh no! A wild error has occurred! \
-          It seems there is some problem with the anime quotes API :/")
-      return
+  if msg.startswith('!citat'):
+    quote = get_random_anime_quote()
+    await channel.send(quote or "Oh no! A wild error has appeared! (Prosím, nahláste to.)")
 
-    response = json.loads(res.text)
+  cmd_for_adding_manga = "!pridaj "
+  if msg.startswith(cmd_for_adding_manga):
+    if len(msg) > len(cmd_for_adding_manga): 
+      manga_name = msg.split(' ', 1)[1]
+      update_manga_list(manga_name)
+      await channel.send(f'Anime {manga_name} bolo pridané do zoznamu!')
+    else:
+      await channel.send('Ak mi neprezradíš názov mangy na pridanie, tak ju nemôžem pridať (>_<).')
 
-    await channel.send(
-        f'"{response["quote"]}"\n-{response["character"]} from {response["anime"]}'
-    )
-
-  if msg.startswith('$add '):
-    manga_name = msg.split(' ', 1)[1]
-    update_manga_list(manga_name)
-    await channel.send(f'Added {manga_name} to the list!')
-
-  if msg.startswith('$list'):
+  if msg.startswith('!mangy'):
     mangas = get_mangas()
     if len(mangas) > 0:
       tmp = list(zip(range(len(mangas)), mangas, strict=True))
       mangas_numbered_list_str = ''
       for i, manga_name in tmp:
         mangas_numbered_list_str += f'{i + 1}. {manga_name}\n'
-      await channel.send('Mangas:\n' + mangas_numbered_list_str)
+      await channel.send('Máme mangy:\n' + mangas_numbered_list_str)
     else:
-      await channel.send('Mangas:\nThere are no mangas! :0')
+      await channel.send("Čože?! :0 Nemáme žiadnu mangu! :'(")
 
-  if msg.startswith('$del '):
-    idx = int(msg.split(' ', 1)[1])
-    delete_from_manga_list(idx)
-    await channel.send(f'Deleted {idx} from the list!')
+  cmd_for_deleting_manga = "!zmaz "
+  if msg.startswith(cmd_for_deleting_manga):
+    if len(msg) > len(cmd_for_deleting_manga):
+      manga_num = int(msg.split(' ', 1)[1])
+      idx = manga_num - 1
+      delete_from_manga_list(idx)
+      await channel.send(f'Manga č.{idx} bola vymazaná zo zoznamu!')
+    else:
+      await channel.send('Ak mi neprezradíš číslo mangy na vymazanie, tak ju nemôžem vymazať (>_<).')
 
 
 keep_alive()
@@ -96,7 +106,7 @@ keep_alive()
 try:
   token = os.getenv("TOKEN") or ""
   if token == "":
-    raise Exception("Please add your token to the Secrets pane.")
+    raise Exception("Please add your token to the Secrets.")
   client.run(token)
 except discord.HTTPException as e:
     if e.status == 429:

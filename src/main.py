@@ -17,11 +17,12 @@ client = discord.Client(intents=intents)
 
 def update_manga_list(manga_name):
   if "mangas" in db.keys():
-    mangas = db["mangas"]
+    mangas = list(db["mangas"])
     mangas.append(manga_name)
+    mangas.sort()
     db["mangas"] = mangas
   else:
-    db["mangas"] = [ manga_name ]
+    db["mangas"] = [manga_name]
 
 
 def get_mangas():
@@ -68,16 +69,19 @@ async def on_message(message):
 
   if msg.startswith('!citat'):
     quote = get_random_anime_quote()
-    await channel.send(quote or "Oh no! A wild error has appeared! (Prosím, nahláste to.)")
+    await channel.send(
+        quote or "Oh no! A wild error has appeared! (Prosím, nahláste to.)")
 
   cmd_for_adding_manga = "!pridaj "
   if msg.startswith(cmd_for_adding_manga):
-    if len(msg) > len(cmd_for_adding_manga): 
+    if len(msg) > len(cmd_for_adding_manga):
       manga_name = msg.split(' ', 1)[1]
       update_manga_list(manga_name)
       await channel.send(f'Anime {manga_name} bolo pridané do zoznamu!')
     else:
-      await channel.send('Ak mi neprezradíš názov mangy na pridanie, tak ju nemôžem pridať (>_<).')
+      await channel.send(
+          'Ak mi neprezradíš názov mangy na pridanie, tak ju nemôžem pridať (>_<).'
+      )
 
   if msg.startswith('!mangy'):
     mangas = get_mangas()
@@ -96,9 +100,11 @@ async def on_message(message):
       manga_num = int(msg.split(' ', 1)[1])
       idx = manga_num - 1
       delete_from_manga_list(idx)
-      await channel.send(f'Manga č.{idx} bola vymazaná zo zoznamu!')
+      await channel.send(f'Manga č.{manga_num} bola vymazaná zo zoznamu!')
     else:
-      await channel.send('Ak mi neprezradíš číslo mangy na vymazanie, tak ju nemôžem vymazať (>_<).')
+      await channel.send(
+          'Ak mi neprezradíš číslo mangy na vymazanie, tak ju nemôžem vymazať (>_<).'
+      )
 
 
 keep_alive()
@@ -109,12 +115,12 @@ try:
     raise Exception("Please add your token to the Secrets.")
   client.run(token)
 except discord.HTTPException as e:
-    if e.status == 429:
-        print(
-            "The Discord servers denied the connection for making too many requests"
-        )
-        print(
-            "Get help from https://stackoverflow.com/questions/66724687/in-discord-py-how-to-solve-the-error-for-toomanyrequests"
-        )
-    else:
-        raise e
+  if e.status == 429:
+    print(
+        "The Discord servers denied the connection for making too many requests"
+    )
+    print(
+        "Get help from https://stackoverflow.com/questions/66724687/in-discord-py-how-to-solve-the-error-for-toomanyrequests"
+    )
+  else:
+    raise e

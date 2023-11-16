@@ -77,7 +77,7 @@ async def on_message(message):
     if len(msg) > len(cmd_for_adding_manga):
       manga_name = msg.split(' ', 1)[1]
       update_manga_list(manga_name)
-      await channel.send(f'Anime {manga_name} bolo pridané do zoznamu!')
+      await channel.send(f'Manga {manga_name} bolo pridané do zoznamu!')
     else:
       await channel.send(
           'Ak mi neprezradíš názov mangy na pridanie, tak ju nemôžem pridať (>_<).'

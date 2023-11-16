@@ -58,6 +58,9 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+  allowed_users_ids = os.getenv("USER_IDS") or []
+  is_allowed_user = str(message.author.id) in allowed_users_ids
+
   if message.author == client.user:
     return
 
@@ -73,7 +76,7 @@ async def on_message(message):
         quote or "Oh no! A wild error has appeared! (Prosím, nahláste to.)")
 
   cmd_for_adding_manga = "!pridaj "
-  if msg.startswith(cmd_for_adding_manga):
+  if msg.startswith(cmd_for_adding_manga) and is_allowed_user:
     if len(msg) > len(cmd_for_adding_manga):
       manga_name = msg.split(' ', 1)[1]
       update_manga_list(manga_name)
@@ -95,7 +98,7 @@ async def on_message(message):
       await channel.send("Čože?! :0 Nemáme žiadnu mangu! :'(")
 
   cmd_for_deleting_manga = "!zmaz "
-  if msg.startswith(cmd_for_deleting_manga):
+  if msg.startswith(cmd_for_deleting_manga) and is_allowed_user:
     if len(msg) > len(cmd_for_deleting_manga):
       manga_num = int(msg.split(' ', 1)[1])
       idx = manga_num - 1

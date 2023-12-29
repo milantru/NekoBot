@@ -6,9 +6,12 @@ Discord bot pre [Neko Anime Bar](http://nekobar.cz/) Discord server.
 Príkazy označené \* môžu využívať iba niektorí užívatelia.
 - `!pozdrav` - Bot pozdraví.
 - `!citat` - Vypíše náhodný citát z nejakého anime (zdroj citátov je [Animechan API](https://github.com/rocktimsaikia/anime-chan)).
-- \*`!pridaj <názov mangy>` - Pridá mangu do zoznamu.
+- \*`!pridaj mangu názov_mangy1, názov_mangy2...` - Pridá mangu do zoznamu.
+- \*`!pridaj hru názov_hry1, názov_hry2...` - Pridá hru do zoznamu.
 - `!mangy` - Vylistuje abecedne zoradený (číslovaný) zoznam s pridanými mangami.
-- \*`!zmaz <poradové číslo mangy>` - Vymaže mangu zo zoznamu.
+- `!hry` - Vylistuje abecedne zoradený (číslovaný) zoznam s pridanými hrami.
+- \*`!zmaz mangu 1, 2, 3...` - Vymaže mangu zo zoznamu (`1, 2, 3...` poradové číslo mangy).
+- \*`!zmaz hru 1, 2, 3...` - Vymaže hru zo zoznamu (`1, 2, 3...` poradové číslo hry).
 
 ## O tvorbe bota
 Toto je môj prvý Discord bot, ktorého som vytvoril podľa [freeCodeCamp tutoriálu](https://youtu.be/SPTfmiYiuok?si=T_CgfdWieJs5VRmg). Bot bol vytvorený za pomoci platformy [Replit](https://replit.com/~) (podobne ako v tutoriáli).

@@ -52,7 +52,7 @@ def get_mangas():
 
 def __delete_from_items_list(items_name, indices):
   items = db[items_name]
-  for idx in indices:
+  for idx in sorted(indices, reverse=True):
     if 0 <= idx < len(items):
       del items[idx]
       db[items_name] = items
@@ -169,8 +169,8 @@ async def on_message(message):
       for num in mangas_nums_tmp.split(","):
         n = num.strip()
         if len(n) > 0:
-          mangas_numbers.append(int(n))
-      delete_from_manga_list([num - 1 for num in mangas_numbers]) # -1 because function wants indices
+          mangas_numbers.append(n)
+      delete_from_manga_list([int(num) - 1 for num in mangas_numbers]) # -1 because function wants indices
       if len(mangas_numbers) > 1:
         notification_msg = f'Mangy s č. {", ".join(mangas_numbers)} boli vymazané zo zoznamu!'
       else:
@@ -188,9 +188,10 @@ async def on_message(message):
       games_nums_tmp = msg.split(' ', 2)[2]
       games_nums = []
       for num in games_nums_tmp.split(","):
+        n = num.strip()
         if len(n) > 0:
-          games_nums.append(int(n))
-      delete_from_game_list([num - 1 for num in games_nums]) # -1 because function wants indices
+          games_nums.append(n)
+      delete_from_game_list([int(num) - 1 for num in games_nums]) # -1 because function wants indices
       if len(games_nums) > 1:
         notification_msg = f'Hry s č. {", ".join(games_nums)} boli vymazané zo zoznamu!'
       else:

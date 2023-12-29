@@ -161,7 +161,7 @@ async def on_message(message):
       await channel.send("Čože?! :0 Nemáme žiadnu hru! :'(")
 
   # !zmaz mangy 1, 2, 3...
-  cmd_for_deleting_manga = "!zmaz mangy "
+  cmd_for_deleting_manga = "!zmaz mangu "
   if msg.startswith(cmd_for_deleting_manga) and is_allowed_user:
     if len(msg) > len(cmd_for_deleting_manga):
       mangas_nums_tmp = msg.split(' ', 2)[2]
@@ -182,7 +182,7 @@ async def on_message(message):
       )
 
   # !zmaz hry 1, 2, 3...
-  cmd_for_deleting_games = "!zmaz hry "
+  cmd_for_deleting_games = "!zmaz hru "
   if msg.startswith(cmd_for_deleting_games) and is_allowed_user:
     if len(msg) > len(cmd_for_deleting_games):
       games_nums_tmp = msg.split(' ', 2)[2]

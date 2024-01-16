@@ -4,7 +4,7 @@ import discord
 
 import requests
 import json
-from db import get_games, get_mangas, update_game_list, update_manga_list, delete_from_game_list
+from db import get_games, get_mangas, update_game_list, update_manga_list, delete_from_game_list, delete_from_manga_list
 
 from keep_alive import keep_alive
 

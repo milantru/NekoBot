@@ -45,6 +45,20 @@ async def on_message(message):
   if msg.startswith('!pozdrav'):
     await channel.send('Ahoj!')
 
+  # !pomoc
+  if msg.startswith('!pomoc'):
+    await channel.send("""
+    Príkazy označené \* môžu využívať iba niektorí užívatelia.
+- `!pozdrav` - Bot pozdraví.
+- `!citat` - Vypíše náhodný citát z nejakého anime (zdroj citátov je [Animechan API](https://github.com/rocktimsaikia/anime-chan)).
+- \*`!pridaj mangu názov_mangy1, názov_mangy2...` - Pridá mangu do zoznamu.
+- \*`!pridaj hru názov_hry1, názov_hry2...` - Pridá hru do zoznamu.
+- `!mangy` - Vylistuje abecedne zoradený (číslovaný) zoznam s pridanými mangami.
+- `!hry` - Vylistuje abecedne zoradený (číslovaný) zoznam s pridanými hrami.
+- \*`!zmaz mangu 1, 2, 3...` - Vymaže mangu zo zoznamu (`1, 2, 3...` sú poradové čísla máng).
+- \*`!zmaz hru 1, 2, 3...` - Vymaže hru zo zoznamu (`1, 2, 3...` sú poradové čísla hier).
+    """)
+
   # !citat
   if msg.startswith('!citat'):
     quote = get_random_anime_quote()

@@ -19,3 +19,33 @@ Toto je môj prvý Discord bot, ktorého som vytvoril podľa [freeCodeCamp tutor
 Projekt využíva premenné (environment variables):
 - `TOKEN` : `<bot token>` // bot token sa dá získať z Discordu
 - `USER_IDS` : `[<user1 id>, <user2 id>, ...]` // Discord id-čká užívateľov, ktorí môžu využívať všetky príkazy
+
+## REST API
+
+Bot poskytuje takisto aj API. Je možné sa dotazovať na aktuálne hry alebo mangy v bare.
+
+Príklad 1 (Python, vypíše stolné hry v bare):
+
+```Python
+import requests
+import json
+
+res = requests.get('https://0f34ac37-e0e0-4a82-b452-5c2b69293918-00-momoqbv0zn71.janeway.replit.dev/games')
+response = json.loads(res.text)
+
+for res in response:
+    print(res)
+```
+
+Príklad 2 (Python, vypíše mangy v bare):
+
+```Python
+import requests
+import json
+
+res = requests.get('https://0f34ac37-e0e0-4a82-b452-5c2b69293918-00-momoqbv0zn71.janeway.replit.dev/mangas')
+response = json.loads(res.text)
+
+for res in response:
+    print(res)
+```

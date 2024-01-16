@@ -1,5 +1,6 @@
-from flask import Flask
+from flask import Flask, jsonify
 from threading import Thread
+from db import get_games, get_mangas
 
 app = Flask('')
 
@@ -7,6 +8,18 @@ app = Flask('')
 @app.route('/')
 def home():
   return "Hello. I am alive!"
+
+
+@app.route('/games')
+def api_get_games():
+  games = get_games()
+  return jsonify(games)
+
+
+@app.route('/mangas')
+def api_get_mangas():
+  mangas = get_mangas()
+  return jsonify(mangas)
 
 
 def run():

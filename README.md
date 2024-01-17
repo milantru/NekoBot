@@ -18,7 +18,7 @@ Toto je môj prvý Discord bot, ktorého som vytvoril podľa [freeCodeCamp tutor
 
 Projekt využíva premenné (environment variables):
 - `TOKEN` : `<bot token>` // bot token sa dá získať z Discordu
-- `USER_IDS` : `[<user1 id>, <user2 id>, ...]` // Discord id-čká užívateľov, ktorí môžu využívať všetky príkazy
+- `USER_IDS` : `[<user1 id>, <user2 id>, ...]` // Discord id-čká oprávnených užívateľov, ktorí môžu využívať všetky príkazy
 
 ## REST API
 

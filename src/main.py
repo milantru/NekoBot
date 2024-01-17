@@ -48,7 +48,7 @@ async def on_message(message):
   # !pomoc
   if msg.startswith('!pomoc'):
     await channel.send("""
-    Príkazy označené \* môžu využívať iba niektorí užívatelia.
+    Príkazy označené \* môžu využívať iba oprávnení užívatelia.
 - `!pozdrav` - Bot pozdraví.
 - `!citat` - Vypíše náhodný citát z nejakého anime (zdroj citátov je [Animechan API](https://github.com/rocktimsaikia/anime-chan)).
 - \*`!pridaj mangu názov_mangy1, názov_mangy2...` - Pridá mangu do zoznamu.

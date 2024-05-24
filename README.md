@@ -14,7 +14,7 @@ Príkazy označené \* môžu využívať iba oprávnení užívatelia.
 - \*`!zmaz hru 1, 2, 3...` - Vymaže hru zo zoznamu (`1, 2, 3...` sú poradové čísla hier).
 
 ## O tvorbe bota
-Toto je môj prvý Discord bot, ktorého som vytvoril podľa [freeCodeCamp tutoriálu](https://youtu.be/SPTfmiYiuok?si=T_CgfdWieJs5VRmg). Bot bol vytvorený za pomoci platformy [Replit](https://replit.com/~) (podobne ako v tutoriáli).
+Toto je môj prvý Discord bot, ktorého som vytvoril podľa [freeCodeCamp tutoriálu](https://youtu.be/SPTfmiYiuok?si=T_CgfdWieJs5VRmg). Bot bol vytvorený za pomoci platformy [Replit](https://replit.com/~) (podobne ako v tutoriáli). | **UPDATE:** Kód bol masívne refaktorovaný a zbavený závislosti na platforme Replit.
 
 Projekt využíva `.env`:
 - `TOKEN` : `<bot token>` // bot token sa dá získať z Discordu

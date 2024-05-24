@@ -16,9 +16,9 @@ Príkazy označené \* môžu využívať iba oprávnení užívatelia.
 ## O tvorbe bota
 Toto je môj prvý Discord bot, ktorého som vytvoril podľa [freeCodeCamp tutoriálu](https://youtu.be/SPTfmiYiuok?si=T_CgfdWieJs5VRmg). Bot bol vytvorený za pomoci platformy [Replit](https://replit.com/~) (podobne ako v tutoriáli).
 
-Projekt využíva premenné (environment variables):
+Projekt využíva `.env`:
 - `TOKEN` : `<bot token>` // bot token sa dá získať z Discordu
-- `USER_IDS` : `[<user1 id>, <user2 id>, ...]` // Discord id-čká oprávnených užívateľov, ktorí môžu využívať všetky príkazy
+- `USER_IDS` : `"<user1 id>, <user2 id>, ..."` // Discord id-čká oprávnených užívateľov, ktorí môžu využívať všetky príkazy
 
 ## REST API
 

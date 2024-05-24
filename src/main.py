@@ -62,7 +62,7 @@ async def on_message(message):
     await handle_removing_games_async(msg, channel, cmd_for_deleting_games)
 
 
-# keep_alive()
+keep_alive()
 
 try:
   token = os.getenv("TOKEN") or ""

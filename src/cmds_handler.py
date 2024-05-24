@@ -18,11 +18,13 @@ async def handle_removing_games_async(msg, channel, cmd_for_deleting_games):
       games_nums = []
       for num in games_nums_tmp.split(","):
         n = num.strip()
-        if len(n) > 0:
+        if len(n) > 0 and n.isdigit():
           games_nums.append(n)
       db.delete_from_game_list([int(num) - 1 for num in games_nums]) # -1 because function wants indices
       if len(games_nums) > 1:
         notification_msg = f'Hry s č. {", ".join(games_nums)} boli vymazané zo zoznamu!'
+      elif len(games_nums) == 0:
+        notification_msg = 'Zdá sa, že nič nebolo vymazané!'
       else:
         notification_msg = f'Hra č. {games_nums[0]} bola vymazaná zo zoznamu!'
       await channel.send(notification_msg)
@@ -35,11 +37,13 @@ async def handle_removing_mangas_async(msg, channel, cmd_for_deleting_manga):
       mangas_numbers = []
       for num in mangas_nums_tmp.split(","):
         n = num.strip()
-        if len(n) > 0:
+        if len(n) > 0 and n.isdigit():
           mangas_numbers.append(n)
       db.delete_from_manga_list([int(num) - 1 for num in mangas_numbers]) # -1 because function wants indices
       if len(mangas_numbers) > 1:
         notification_msg = f'Mangy s č. {", ".join(mangas_numbers)} boli vymazané zo zoznamu!'
+      elif len(mangas_numbers) == 0:
+        notification_msg = 'Zdá sa, že nič nebolo vymazané!'
       else:
         notification_msg = f'Manga č. {mangas_numbers[0]} bola vymazaná zo zoznamu!'
       await channel.send(notification_msg)

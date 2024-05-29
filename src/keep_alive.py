@@ -2,7 +2,7 @@ from flask import Flask, jsonify
 from threading import Thread
 from db import get_games, get_mangas
 
-app = Flask('')
+app = Flask(__name__)
 
 
 @app.route('/')

@@ -5,8 +5,8 @@ import db
 def get_random_anime_quote():
   try:
     res = requests.get('https://animechan.io/api/v1/quotes/random')
-    response = json.loads(res.text)
-    quote = f'"{response["content"]}"\n-{response["character"]} from {response["anime"]}'
+    response = json.loads(res.text)["data"]
+    quote = f'"{response["content"]}"\n-{response["character"]["name"]} from {response["anime"]["name"]}'
   except Exception:
     quote = None
   
